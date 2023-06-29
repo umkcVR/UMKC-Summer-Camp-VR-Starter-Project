@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public int score;
     public List<GameObject> objects;
     public float radius = 5f, height = 10.0f; // The radius of the circular area
+    public int timeLimit = 60, timeSinceStart = 0;
+    public TextController textController;
 
     private void Start()
     {
@@ -16,8 +18,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator SpawnObject()
     {
         yield return new WaitForSeconds(1.0f);
-        SpawnObjectsInCircularArea();
-        StartCoroutine("SpawnObject");
+        timeSinceStart++;
+        if(timeSinceStart > timeLimit)
+        {
+            GameOver();
+        }
+        else
+        {
+            SpawnObjectsInCircularArea();
+            StartCoroutine("SpawnObject");
+            textController.ChangeText("Time remaining: " + (timeLimit - timeSinceStart));
+        }
     }
 
     public void SpawnObjectsInCircularArea()
@@ -25,5 +36,11 @@ public class GameManager : MonoBehaviour
         float angle = Random.Range(0, 360); // Calculate the angle for each object
         Vector3 spawnPosition = transform.position + Quaternion.Euler(0f, angle, 0f) * (Vector3.forward * radius) + (Vector3.up * height);
         Instantiate(objects[Random.Range(0, objects.Count)], spawnPosition, Quaternion.identity, gameObject.transform);
+    }
+
+    public void GameOver()
+    {
+        Debug.Log("Game Over, you scored " + score);
+        textController.ChangeText("Game Over, you scored " + score);
     }
 }

@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DeleteObjectAndScore : MonoBehaviour
 {
-    public int score = 0;
+    public GameManager gameManager;
+    public AudioSource audioSource;
+    public AudioClip clipOne;
+    public ParticleSystem particleSystem;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -12,7 +15,9 @@ public class DeleteObjectAndScore : MonoBehaviour
         {
             Destroy(other.gameObject);
             Debug.Log("Score");
-            score++;
+            gameManager.score++;
+            audioSource.PlayOneShot(clipOne);
+            particleSystem.Play();
         }
     }
 }
