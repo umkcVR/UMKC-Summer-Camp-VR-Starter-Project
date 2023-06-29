@@ -18,6 +18,7 @@
  * limitations under the License.
  */
 
+using Codice.Client.BaseCommands.Merge.Restorer;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -26,7 +27,9 @@ namespace Oculus.Interaction.Samples
     public class RespawnOnDrop : MonoBehaviour
     {
         [SerializeField]
-        private float _yThresholdForRespawn;
+        private float maxDistanceFromPlayer = 20.0f;
+        public GameObject player;
+        public bool resetNow = false;
 
         [SerializeField]
         private UnityEvent _whenRespawned = new UnityEvent();
@@ -52,7 +55,7 @@ namespace Oculus.Interaction.Samples
 
         protected virtual void Update()
         {
-            if (transform.position.y < _yThresholdForRespawn)
+            if (Vector3.Distance(player.transform.position, gameObject.transform.position) > maxDistanceFromPlayer || resetNow == true)
             {
                 transform.position = _initialPosition;
                 transform.rotation = _initialRotation;
@@ -69,8 +72,24 @@ namespace Oculus.Interaction.Samples
                     freeTransformer.MarkAsBaseScale();
                 }
 
+                if(resetNow) 
+                    resetNow = false;
+
                 _whenRespawned.Invoke();
             }
+        }
+
+        public void Reset()
+        {
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            Debug.Log("POINTING!!!");
+            resetNow = true;
         }
     }
 }

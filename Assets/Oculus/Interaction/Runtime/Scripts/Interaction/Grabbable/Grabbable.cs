@@ -202,7 +202,6 @@ namespace Oculus.Interaction
 
             base.OnDisable();
         }
-
         #region Inject
 
         public void InjectOptionalOneGrabTransformer(ITransformer transformer)

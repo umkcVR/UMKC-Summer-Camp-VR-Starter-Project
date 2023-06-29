@@ -18,6 +18,7 @@ public class DeleteOnCollision : MonoBehaviour
                 }
                 Destroy(collision.transform.gameObject);
                 gameManager.score++;
+                gameManager.currentEnemies--;
             }
 
         }
