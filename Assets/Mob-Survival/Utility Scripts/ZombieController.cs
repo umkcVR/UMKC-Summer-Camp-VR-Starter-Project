@@ -6,9 +6,10 @@ using UnityEngine;
 
 public class ZombieController : MonoBehaviour
 {
+    public ChestController chestController;
     public float speed = 1.0f, attackRange = 0.5f;
     public GameObject target;
-    public bool isAlive = true;
+    public bool isAlive = true, hasDied = false, hasAttacked = false;
     public Animator animator;
 
     public void Update()
@@ -17,10 +18,13 @@ public class ZombieController : MonoBehaviour
         {
             if(Vector3.Distance(transform.position, target.transform.position) < attackRange)
             {
-                Attack();
+                if(hasAttacked == false)
+                {
+                    hasAttacked = true;
+                    Attack();
+                }
                 animator.SetFloat("speed", 0f);
                 animator.SetBool("attack", true);
-
             }
             else
             {
@@ -31,10 +35,17 @@ public class ZombieController : MonoBehaviour
         }
         else
         {
-            animator.SetFloat("speed", 0f);
-            animator.SetBool("attack", false);
-            animator.SetBool("death", true);
+            if(hasDied)
+            {
 
+            }
+            else
+            {
+                animator.SetFloat("speed", 0f);
+                animator.SetBool("attack", false);
+                animator.SetBool("death", true);
+                hasDied = true;
+            }
         }
     }
 
@@ -49,6 +60,11 @@ public class ZombieController : MonoBehaviour
     }
     void Attack()
     {
+        chestController.Attacked();
+    }
 
+    public void Die()
+    {
+        isAlive = false;
     }
 }

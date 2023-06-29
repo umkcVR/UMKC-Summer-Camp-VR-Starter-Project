@@ -4,20 +4,38 @@ using UnityEngine;
 
 public class GunControlller : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Transform muzzleTransform;       // The transform representing the gun's muzzle position
+    public GameObject bulletPrefab;         // Prefab of the bullet object
+    public float shootForce = 20f;          // Force with which the bullet is shot
+    public AudioClip shootSound;            // Sound played when shooting
+
+    public AudioSource audioSource;        // Reference to the AudioSource component
+
     void Start()
     {
-        
+        // Get the AudioSource component attached to the same GameObject
+        audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // Check for input to shoot with Oculus Quest controller
+        if (OVRInput.GetDown(OVRInput.Button.PrimaryIndexTrigger,OVRInput.Controller.RTouch))
+        {
+            Shoot();
+        }
     }
 
-    public void Shoot()
+    void Shoot()
     {
-        Debug.Log("Bang!!!");
+        // Create a bullet object at the muzzle position
+        GameObject bullet = Instantiate(bulletPrefab, muzzleTransform.position, muzzleTransform.rotation);
+
+        // Apply a force to shoot the bullet
+        Rigidbody bulletRigidbody = bullet.GetComponent<Rigidbody>();
+        bulletRigidbody.velocity = muzzleTransform.forward * shootForce;
+
+        // Play the shoot sound
+        audioSource.PlayOneShot(shootSound);
     }
 }
