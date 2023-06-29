@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,42 +7,40 @@ public class GameManager : MonoBehaviour
 {
     public int score;
     public List<GameObject> objects;
-    public float innerRadius = 15.0f, radius = 5f, height = 10.0f; // The radius of the circular area
-    
+    public float innerRadius = 4.0f, radius = 7.0f, height = 10.0f; // The radius of the circular area
+    public float spawnDelay = 10.0f, maxEnemies = 3.0f, currentEnemies = 0.0f;
+    public float RealDelay;
+
     private void Start()
     {
         StartCoroutine("SpawnObject");
+        currentEnemies = 0;
     }
-
-    private IEnumerator SpawnObject()
+    private void Update()
     {
-        yield return new WaitForSeconds(1.0f);
-        SpawnObjectsInCircularArea();
-        StartCoroutine("SpawnObject");
-    }
-
-    public void SpawnObjectsInCircularArea()
-    {
-        float angle = Random.Range(0, 360); // Calculate the angle for each object
-        // float radiusRandomized = radius * random_except_list(8, new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 });
-        float radiusRandomized = radius * (UnityEngine.Random.Range(0, 10)) + innerRadius;
-        Vector3 spawnPosition = transform.position + Quaternion.Euler(0f, angle, 0f) * (Vector3.forward * radiusRandomized) + (Vector3.up * height);
-        GameObject temp = Instantiate(objects[Random.Range(0, objects.Count)], spawnPosition, Quaternion.identity, gameObject.transform);
-        temp.transform.rotation = Quaternion.LookRotation((transform.position - temp.transform.position).normalized);
-    }
-/*
-    public static int random_except_list(int n, int[] x)
-    {
-        Random r = new Random();
-        int result = r.Next(n - x.Length);
-
-        for (int i = 0; i < x.Length; i++)
+        if (currentEnemies < maxEnemies)
         {
-            if (result < x[i])
-                return result;
-            result++;
+            RealDelay = spawnDelay;
         }
-        return result;
+        else
+        {
+            RealDelay = 9999999;
+        }
     }
-*/
+    private IEnumerator SpawnObject()
+        {
+            yield return new WaitForSeconds(RealDelay);
+            SpawnObjectsInCircularArea();
+            StartCoroutine("SpawnObject");
+        }
+
+        public void SpawnObjectsInCircularArea()
+        {
+            float angle = Random.Range(0, 360); // Calculate the angle for each object
+            float radiusRandomized = radius * (UnityEngine.Random.Range(0,10))/8 + innerRadius;
+            Vector3 spawnPosition = transform.position + Quaternion.Euler(0f, angle, 0f) * (Vector3.forward * radiusRandomized) + (Vector3.up * height);
+            GameObject temp = Instantiate(objects[Random.Range(0, objects.Count)], spawnPosition, Quaternion.identity, gameObject.transform);
+            temp.transform.rotation = Quaternion.LookRotation((transform.position - temp.transform.position).normalized);
+            currentEnemies++;
+        }
 }
