@@ -349,6 +349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1965221554}
   - component: {fileID: 1965221553}
+  - component: {fileID: 1965221555}
   m_Layer: 0
   m_Name: Enemy Spawner
   m_TagString: Untagged
@@ -363,11 +364,17 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1965221552}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4fe65b712d88d50418f6d3d7520ad905, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy: {fileID: 2134081155091664129, guid: 5e709f6b060f1b64c849208e6afd790e, type: 3}
+  Timer: 0
+  SpawnFrequency: 10
+  MaxEnemies: 5
+  CurrentEnemies: 0
+  SpawnRad: 50
 --- !u!4 &1965221554
 Transform:
   m_ObjectHideFlags: 0
@@ -383,3 +390,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1965221555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1965221552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69b4a1798f6c364493093709a525230, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  score: 0
+  objects:
+  - {fileID: 2134081155091664129, guid: 5e709f6b060f1b64c849208e6afd790e, type: 3}
+  radius: 5
+  height: 0
