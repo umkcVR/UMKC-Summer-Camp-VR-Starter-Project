@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7702921660531556306}
   - component: {fileID: 4926763471695671067}
   - component: {fileID: -6952640539914604886}
+  - component: {fileID: 491320447149791954}
   m_Layer: 0
   m_Name: watermelon
-  m_TagString: Untagged
+  m_TagString: Objects
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742328a7b0f911146a0cfdb41c4a3bbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifeTime: 5
+  lifeTime: 10
 --- !u!65 &4926763471695671067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -129,7 +130,7 @@ Rigidbody:
   m_GameObject: {fileID: 2790298353049730948}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.05
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -142,8 +143,21 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &491320447149791954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2790298353049730948}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8b9cff5bca4a8429d1582336453623, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loweringSpeed: 1
