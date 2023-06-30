@@ -2232,6 +2232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1965221555}
+  ps: {fileID: 1884596654}
 --- !u!1001 &1741665840
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2573,6 +2574,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1965221555}
+  ps: {fileID: 1884596654}
 --- !u!1001 &1884596652
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2625,6 +2627,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2694927045953860033, guid: 73dd343742a5b7049aefe23cb00b0a73, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 999
+      objectReference: {fileID: 0}
     - target: {fileID: 6223944889748966652, guid: 73dd343742a5b7049aefe23cb00b0a73, type: 3}
       propertyPath: m_Name
       value: Particle System
@@ -2656,6 +2662,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1965221555}
   EmitRate: 50
+  burstEmitRate: 10000
+  burstDuration: 0.5
+  timeBetweenBursts: 9
+  ps: {fileID: 1884596655}
+--- !u!198 &1884596655 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2694927045953860033, guid: 73dd343742a5b7049aefe23cb00b0a73, type: 3}
+  m_PrefabInstance: {fileID: 1884596652}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1941853204
 PrefabInstance:
   m_ObjectHideFlags: 0

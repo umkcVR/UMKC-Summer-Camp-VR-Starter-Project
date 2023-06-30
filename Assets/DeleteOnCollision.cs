@@ -5,6 +5,7 @@ using UnityEngine;
 public class DeleteOnCollision : MonoBehaviour
 {
     public GameManager gameManager;
+    public ParticleScript ps;
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -19,6 +20,7 @@ public class DeleteOnCollision : MonoBehaviour
                 Destroy(collision.transform.gameObject);
                 gameManager.score++;
                 gameManager.currentEnemies--;
+                ps.EmitBurst();
                 gameManager.PlaySlimeDeathSound();
             }
         }

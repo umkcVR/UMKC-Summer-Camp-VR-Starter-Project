@@ -6,28 +6,31 @@ public class ParticleScript : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameManager gameManager;
-    public float EmitRate = 50.0f;
+    public float EmitRate = 50.0f, burstEmitRate = 100.0f, burstDuration = 0.5f, timeBetweenBursts = 3.0f;
+    public ParticleSystem ps;
+
     void Start()
     {
-        ParticleSystem ps = GetComponent<ParticleSystem>();
+        if(ps == null)
+            ps = GetComponent<ParticleSystem>();
+        //StartCoroutine("Burst");
+    }
+
+    public void EmitBurst()
+    {
+        StartCoroutine("Burst");
+    }
+
+    private IEnumerator Burst()
+    {
         var em = ps.emission;
         em.enabled = true;
 
+        em.rateOverTime = burstEmitRate;
+        yield return new WaitForSeconds(burstDuration);
+
         em.rateOverTime = EmitRate;
-
-        em.SetBursts(
-            new ParticleSystem.Burst[]{
-                new ParticleSystem.Burst(2.0f, 100),
-                new ParticleSystem.Burst(4.0f, 100)
-            });
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (gameManager.score == 5)
-        {
-            EmitRate = 99;
-        }
+        yield return new WaitForSeconds(timeBetweenBursts);
+        //StartCoroutine("Burst");
     }
 }
