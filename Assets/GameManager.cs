@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public float spawnDelay = 10.0f, maxEnemies = 3.0f, currentEnemies = 0.0f;
     public float RealDelay;
     public AudioClip slimeDeathSound;
+    public AudioClip whoosh;
     public AudioSource audioSource;
 
     private void Start()
@@ -29,11 +30,6 @@ public class GameManager : MonoBehaviour
         else
         {
             RealDelay = 9999999;
-        }
-
-        if (score == 5)
-        {
-
         }
     }
     private IEnumerator SpawnObject()
@@ -56,5 +52,9 @@ public class GameManager : MonoBehaviour
     public void PlaySlimeDeathSound()
     {
         audioSource.PlayOneShot(slimeDeathSound);
+    }
+    public void whooshsound()
+    {
+        audioSource.PlayOneShot(whoosh);
     }
 }

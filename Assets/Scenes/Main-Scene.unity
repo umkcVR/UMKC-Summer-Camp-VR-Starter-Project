@@ -3033,6 +3033,7 @@ MonoBehaviour:
   currentEnemies: 0
   RealDelay: 0
   slimeDeathSound: {fileID: 8300000, guid: 21dd293c65d9ab645849f1c69f0bf3cc, type: 3}
+  whoosh: {fileID: 8300000, guid: 686686056ea2c444a868e1d129405ebc, type: 3}
   audioSource: {fileID: 1965221556}
 --- !u!82 &1965221556
 AudioSource:

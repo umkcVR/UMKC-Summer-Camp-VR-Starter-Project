@@ -22,6 +22,7 @@ public class DeleteOnCollision : MonoBehaviour
                 gameManager.currentEnemies--;
                 ps.EmitBurst();
                 gameManager.PlaySlimeDeathSound();
+                gameManager.whooshsound();
             }
         }
     }
