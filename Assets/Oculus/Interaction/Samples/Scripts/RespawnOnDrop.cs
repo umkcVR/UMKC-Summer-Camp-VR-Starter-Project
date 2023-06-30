@@ -18,7 +18,6 @@
  * limitations under the License.
  */
 
-using Codice.Client.BaseCommands.Merge.Restorer;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -81,14 +80,6 @@ namespace Oculus.Interaction.Samples
 
         public void Reset()
         {
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
-            Debug.Log("POINTING!!!");
             resetNow = true;
         }
     }

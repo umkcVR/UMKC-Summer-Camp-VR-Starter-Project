@@ -14,13 +14,13 @@ public class DeleteOnCollision : MonoBehaviour
             {
                 foreach (Transform child in collision.transform)
                 {
-                    Destroy(child);
+                    Destroy(child.gameObject);
                 }
                 Destroy(collision.transform.gameObject);
                 gameManager.score++;
                 gameManager.currentEnemies--;
+                gameManager.PlaySlimeDeathSound();
             }
-
         }
     }
 }
